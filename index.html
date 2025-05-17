@@ -8,6 +8,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    .tech-icons {
+      margin-top: 10px;
+    }
+    .tech-icons i {
+      font-size: 20px;
+      margin-right: 8px;
+      color: #444;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -27,13 +38,21 @@
 
   <main>
     <section id="home">
+  <div class="home-content">
+    <div class="home-image">
+      <img src="assets/My.jpg" alt="Praweena Nuwangee">
+    </div>
+    <div class="home-text">
       <h2>Hello, I'm Praweena Nuwangee</h2>
       <p>"I'm a full-stack developer passionate about creating amazing and user-friendly web applications."</p>
       <div class="button-group">
         <a href="#projects" class="cta-button">View My Work</a>
-        <a href="assets/Praweena_Nuwangee_Resume.pdf" download class="cta-button secondary">Download Resume</a>
+        <a href="assets/Praweena Nuwangee.pdf" download class="cta-button secondary">Download Resume</a>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+    
 
     <section id="about">
       <h2>About Me</h2>
@@ -42,7 +61,6 @@
         I have a strong interest in graphic design and web development, with a solid foundation in HTML, CSS, JavaScript, 
         Angular, React, and the MERN stack. I'm passionate about creating innovative, user-centric designs that improve the digital experience.
       </p>
-
       <div class="skills">
         <h3>My Skills</h3>
         <ul>
@@ -62,29 +80,97 @@
     <section id="projects">
       <h2>My Projects</h2>
       <div class="project-grid">
+
+        <div class="project-card">
+          <h3>DryCraft – DIY Craft Sharing App</h3>
+          <p>A full-stack web app for sharing and discovering DIY craft ideas, allowing users to post, like, comment, and explore creative projects.</p>
+          <div class="tech-icons">
+            <i class="fab fa-html5"></i><i class="fab fa-css3-alt"></i><i class="fab fa-js"></i><i class="fab fa-node-js"></i><i class="fab fa-react"></i><i class="fas fa-database"></i>
+          </div>
+          <a href="https://github.com/Dill1027/Dry_Craft" target="_blank" class="github-button">View on GitHub</a>
+        </div>
+
+        <div class="project-card">
+          <h3>Academic Scheduler – University Task Manager</h3>
+          <p>A web-based tool to manage academic tasks, track deadlines, and set reminders. Designed to help students organize assignments and exam schedules efficiently.</p>
+          <div class="tech-icons">
+            <i class="fab fa-html5"></i><i class="fab fa-css3-alt"></i><i class="fab fa-js"></i><i class="fab fa-node-js"></i><i class="fas fa-database"></i>
+          </div>
+          <a href="https://github.com/Dill1027/Academic-Scheduler" target="_blank" class="github-button">View on GitHub</a>
+        </div>
+
         <div class="project-card">
           <h3>CookCraft – Food Recipe App</h3>
           <p>A MERN stack-based app where users can add, update, delete, and search recipes, manage collections, and save favorites with user authentication.</p>
+          <div class="tech-icons">
+            <i class="fab fa-html5"></i><i class="fab fa-css3-alt"></i><i class="fab fa-react"></i><i class="fab fa-node-js"></i><i class="fas fa-database"></i>
+          </div>
           <a href="https://github.com/praweenanuwangee/CookCraft" target="_blank" class="github-button">View on GitHub</a>
         </div>
 
         <div class="project-card">
           <h3>Employee Management System</h3>
           <p>A full-featured MERN stack web app with CRUD operations, salary assignment, leave requests, and automated report generation for workforce management.</p>
+          <div class="tech-icons">
+            <i class="fab fa-react"></i><i class="fab fa-node-js"></i><i class="fas fa-database"></i>
+          </div>
           <a href="https://github.com/praweenanuwangee/Employee-Management-System" target="_blank" class="github-button">View on GitHub</a>
+        </div>
+
+        <div class="project-card">
+          <h3>TrainAdmin – Java Railway Management System</h3>
+          <p>A Java-based desktop application designed to manage train schedules, ticket bookings, and admin functionalities.</p>
+          <div class="tech-icons">
+            <i class="fab fa-java"></i>
+          </div>
+          <a href="https://github.com/praweenanuwangee/trainAdmin" target="_blank" class="github-button">View on GitHub</a>
         </div>
 
         <div class="project-card">
           <h3>Healthcare Appointment Mobile App</h3>
           <p>A Kotlin-based app for booking, managing, and canceling doctor appointments with reminders and a user-friendly interface.</p>
+          <div class="tech-icons">
+            <i class="fab fa-java"></i>
+          </div>
           <a href="https://github.com/praweenanuwangee/Healthcare-Appointment-App" target="_blank" class="github-button">View on GitHub</a>
         </div>
 
         <div class="project-card">
           <h3>Interactive Hobby Sharing Web App</h3>
           <p>Built with HTML, CSS, and JavaScript, this app allows users to explore hobbies, view a gallery, and provide feedback with a responsive design.</p>
+          <div class="tech-icons">
+            <i class="fab fa-html5"></i><i class="fab fa-css3-alt"></i><i class="fab fa-js"></i>
+          </div>
           <a href="https://github.com/praweenanuwangee/Hobby-Sharing-App" target="_blank" class="github-button">View on GitHub</a>
         </div>
+
+        <div class="project-card">
+          <h3>Python-Based Calculator</h3>
+          <p>A simple calculator built using Python. Supports basic arithmetic operations and demonstrates core logic implementation.</p>
+          <div class="tech-icons">
+            <i class="fab fa-python"></i>
+          </div>
+          <a href="https://github.com/praweenanuwangee/Calculator" target="_blank" class="github-button">View on GitHub</a>
+        </div>
+
+        <div class="project-card">
+          <h3>Python Quiz Game</h3>
+          <p>A console-based quiz application developed in Python. Presents multiple-choice questions, checks answers, and tracks the user's score.</p>
+          <div class="tech-icons">
+            <i class="fab fa-python"></i>
+          </div>
+          <a href="https://github.com/praweenanuwangee/Quiz-game" target="_blank" class="github-button">View on GitHub</a>
+        </div>
+
+        <div class="project-card">
+          <h3>Invoice Generator Web App</h3>
+          <p>A responsive app built with HTML, CSS, and JavaScript that allows users to generate professional invoices dynamically.</p>
+          <div class="tech-icons">
+            <i class="fab fa-html5"></i><i class="fab fa-css3-alt"></i><i class="fab fa-js"></i>
+          </div>
+          <a href="https://github.com/praweenanuwangee/Invoice-Generator" target="_blank" class="github-button">View on GitHub</a>
+        </div>
+
       </div>
     </section>
 
@@ -92,27 +178,14 @@
       <h2>My Certificates</h2>
       <div class="certificates-grid">
         <div class="certificate-card">
-          <h3>Full Stack Development</h3>
-          <p>MERN Stack Certification from Udemy</p>
-          <a href="assets/certificates/mern-certificate.pdf" target="_blank" class="view-certificate">View Certificate</a>
+          <h3>Front-End Web Development</h3>
+          <p>Covered HTML, CSS, JavaScript, jQuery, AJAX, and Angular SPA development</p>
+          <a href="assets/1736005664453.pdf" target="_blank" class="view-certificate">View Certificate</a>
         </div>
-
         <div class="certificate-card">
-          <h3>React.js Fundamentals</h3>
-          <p>React Certification from Coursera</p>
-          <a href="assets/certificates/react-certificate.pdf" target="_blank" class="view-certificate">View Certificate</a>
-        </div>
-
-        <div class="certificate-card">
-          <h3>UI/UX Design</h3>
-          <p>User Experience Design Certification from Google</p>
-          <a href="assets/certificates/ux-certificate.pdf" target="_blank" class="view-certificate">View Certificate</a>
-        </div>
-
-        <div class="certificate-card">
-          <h3>Mobile App Development</h3>
-          <p>Kotlin Certification from Udacity</p>
-          <a href="assets/certificates/kotlin-certificate.pdf" target="_blank" class="view-certificate">View Certificate</a>
+          <h3>Web Design for Beginners</h3>
+          <p>Currently learning foundational web technologies: HTML, CSS, JavaScript</p>
+          <a href="assets/1733848830185.pdf" target="_blank" class="view-certificate">View Certificate</a>
         </div>
       </div>
     </section>
