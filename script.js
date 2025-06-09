@@ -87,6 +87,33 @@ function animateSkillBars() {
     }
   });
 }
+
+// Enhanced scroll-based animations
+function initializeAnimations() {
+  const animatedElements = document.querySelectorAll(
+    '.animate-on-scroll, .animate-slide-right, .animate-slide-up, .animate-scale'
+  );
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.visibility = 'visible';
+        entry.target.style.opacity = '1';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  animatedElements.forEach(element => {
+    element.style.visibility = 'hidden';
+    element.style.opacity = '0';
+    observer.observe(element);
+  });
+}
+
 // Add this to your existing JavaScript
 window.addEventListener('scroll', function() {
   const header = document.querySelector('header');
@@ -109,6 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initial animations
   animateOnScroll();
   animateSkillBars();
+  initializeAnimations();
   
   // Set up scroll event listeners
   window.addEventListener('scroll', function() {
