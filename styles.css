@@ -103,6 +103,23 @@ a:hover { color: var(--accent); }
 .copy-status { font-size: 14px; min-height: 20px; margin-top: 10px; color: var(--muted); }
 footer { padding: 28px 0; }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 13px; color: var(--muted); }
+.research-section { background: #f0f5fc; }
+.research-card { display: grid; grid-template-columns: 1fr 1fr; background: white; border: 1px solid #ccdaee; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 32px #17243b06; }
+.research-overview { padding: 38px; }
+.research-label { display: inline-block; font-size: 12px; font-weight: 600; color: var(--accent); background: #edf3ff; border-radius: 5px; padding: 6px 10px; }
+.research-overview h3 { font-size: 38px; line-height: 1.2; letter-spacing: -1px; margin: 22px 0 12px; }
+.research-title { font-size: 19px; line-height: 1.6; font-weight: 600; color: var(--ink); margin: 0 0 20px; }
+.research-overview > p:not(.research-title), .research-contribution > p { font-size: 16px; line-height: 1.8; color: var(--muted); }
+.research-overview .button { margin-top: 12px; }
+.research-contribution { padding: 38px; border-left: 1px solid var(--line); background: #fbfcff; }
+.research-contribution h4 { font-size: 23px; line-height: 1.4; margin: 15px 0; letter-spacing: -.5px; }
+.research-highlights { list-style: none; padding: 0; margin: 25px 0 0; }
+.research-highlights li { padding: 16px 0 16px 18px; border-top: 1px solid var(--line); position: relative; }
+.research-highlights li:before { content: ''; position: absolute; left: 0; top: 26px; width: 5px; height: 5px; background: var(--accent); border-radius: 50%; }
+.research-highlights strong { display: block; font-size: 16px; margin-bottom: 5px; }
+.research-highlights span { display: block; font-size: 15px; color: var(--muted); line-height: 1.7; }
+.research-technologies { grid-column: 1 / -1; padding: 24px 38px; border-top: 1px solid var(--line); display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.research-technologies h4 { font-size: 14px; margin: 0; }
 @media (max-width: 1100px) {
   .nav-links { gap: 16px; }
   .hero-grid { gap: 40px; }
@@ -112,6 +129,10 @@ footer { padding: 28px 0; }
   .contact-bottom { align-items: start; flex-direction: column; }
 }
 @media (max-width: 900px) {
+  .research-card { grid-template-columns: 1fr; }
+  .research-contribution { border-left: 0; border-top: 1px solid var(--line); }
+  .research-overview, .research-contribution { padding: 26px; }
+  .research-technologies { padding: 24px 26px; gap: 14px; }
   .wrap { width: calc(100% - 40px); }
   .nav { height: 72px; }
   .menu-toggle { display: block; }
