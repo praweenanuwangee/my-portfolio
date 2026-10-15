@@ -1,147 +1,57 @@
-// Mobile menu toggle
-document.getElementById('mobile-menu-button').addEventListener('click', function() {
-  const menu = document.getElementById('mobile-menu');
-  menu.classList.toggle('hidden');
+﻿const menuButton = document.querySelector('.menu-toggle');
+const menu = document.querySelector('.nav-links');
+function closeMenu() {
+  menu.classList.remove('open');
+  menuButton.setAttribute('aria-expanded', 'false');
+}
+menuButton.addEventListener('click', () => {
+  const expanded = menuButton.getAttribute('aria-expanded') !== 'true';
+  menuButton.setAttribute('aria-expanded', String(expanded));
+  menu.classList.toggle('open', expanded);
 });
-
-// Smooth scrolling and active link highlighting
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    
-    const targetId = this.getAttribute('href');
-    const targetElement = document.querySelector(targetId);
-    
-    if (targetElement) {
-      window.scrollTo({
-        top: targetElement.offsetTop - 80,
-        behavior: 'smooth'
-      });
-      
-      // Update active link
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-      });
-      this.classList.add('active');
-      
-      // Close mobile menu if open
-      const mobileMenu = document.getElementById('mobile-menu');
-      if (!mobileMenu.classList.contains('hidden')) {
-        mobileMenu.classList.add('hidden');
-      }
-    }
-  });
+menu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && menu.classList.contains('open')) {
+    closeMenu();
+    menuButton.focus();
+  }
 });
-
-// Update active link on scroll
-function updateActiveLink() {
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('.nav-link');
-  
-  let currentSection = '';
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.clientHeight;
-    if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
-      currentSection = '#' + section.id;
-    }
-  });
-  
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === currentSection) {
-      link.classList.add('active');
-    }
-  });
-}
-
-// Animate elements when they come into view
-function animateOnScroll() {
-  const elements = document.querySelectorAll('.animate-on-scroll');
-  
-  elements.forEach(element => {
-    const elementPosition = element.getBoundingClientRect().top;
-    const screenPosition = window.innerHeight / 1.3;
-    
-    if (elementPosition < screenPosition) {
-      element.classList.add('animate-fade-in');
-    }
-  });
-}
-
-// Animate skill bars when they come into view
-function animateSkillBars() {
-  const skillCards = document.querySelectorAll('.skill-card');
-  
-  skillCards.forEach(card => {
-    const rect = card.getBoundingClientRect();
-    const isVisible = (rect.top <= window.innerHeight * 0.8) && 
-                     (rect.bottom >= window.innerHeight * 0.2);
-    
-    if (isVisible && !card.classList.contains('in-view')) {
-      card.classList.add('in-view');
-      const skillLevel = card.querySelector('.skill-level');
-      const width = skillLevel.style.width;
-      skillLevel.style.setProperty('--skill-level', width);
-      skillLevel.style.width = 'var(--skill-level)';
-    }
-  });
-}
-
-// Enhanced scroll-based animations
-function initializeAnimations() {
-  const animatedElements = document.querySelectorAll(
-    '.animate-on-scroll, .animate-slide-right, .animate-slide-up, .animate-scale'
-  );
-  
-  const observer = new IntersectionObserver((entries) => {
+window.matchMedia('(min-width: 761px)').addEventListener('change', event => {
+  if (event.matches) closeMenu();
+});
+const navigation = document.querySelectorAll('.nav-link');
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.visibility = 'visible';
-        entry.target.style.opacity = '1';
-        observer.unobserve(entry.target);
-      }
+      if (!entry.isIntersecting) return;
+      navigation.forEach(link => {
+        const active = link.hash === '#' + entry.target.id;
+        link.classList.toggle('active', active);
+        if (active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
     });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  });
-
-  animatedElements.forEach(element => {
-    element.style.visibility = 'hidden';
-    element.style.opacity = '0';
-    observer.observe(element);
-  });
+  }, { rootMargin: '-15% 0px -65% 0px', threshold: 0 });
+  document.querySelectorAll('main section[id], #certificates').forEach(section => observer.observe(section));
 }
-
-// Add this to your existing JavaScript
-window.addEventListener('scroll', function() {
-  const header = document.querySelector('header');
-  if (window.scrollY > 50) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
-});
-
-// Initialize on load
-document.addEventListener('DOMContentLoaded', function() {
-  const header = document.querySelector('header');
-  if (window.scrollY > 50) {
-    header.classList.add('scrolled');
-  }
-});
-// Event Listeners
-document.addEventListener('DOMContentLoaded', function() {
-  // Initial animations
-  animateOnScroll();
-  animateSkillBars();
-  initializeAnimations();
-  
-  // Set up scroll event listeners
-  window.addEventListener('scroll', function() {
-    updateActiveLink();
-    animateOnScroll();
-    animateSkillBars();
+document.querySelectorAll('.filter').forEach(button => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('.filter').forEach(filter => filter.setAttribute('aria-pressed', String(filter === button)));
+    let count = 0;
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.hidden = button.dataset.filter !== 'all' && card.dataset.category !== button.dataset.filter;
+      if (!card.hidden) count++;
+    });
+    document.querySelector('#project-status').textContent = `${count} projects shown`;
   });
 });
+document.querySelector('.copy-button').addEventListener('click', async () => {
+  const status = document.querySelector('.copy-status');
+  try {
+    await navigator.clipboard.writeText('praweenanuwangi@gmail.com');
+    status.textContent = 'Email address copied!';
+  } catch {
+    status.textContent = 'Email: praweenanuwangi@gmail.com';
+  }
+});
+document.querySelector('#year').textContent = new Date().getFullYear();
