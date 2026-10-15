@@ -1,4 +1,4 @@
-﻿const menuButton = document.querySelector('.menu-toggle');
+const menuButton = document.querySelector('.menu-toggle');
 const menu = document.querySelector('.nav-links');
 function closeMenu() {
   menu.classList.remove('open');
@@ -16,7 +16,7 @@ document.addEventListener('keydown', event => {
     menuButton.focus();
   }
 });
-window.matchMedia('(min-width: 761px)').addEventListener('change', event => {
+window.matchMedia('(min-width: 901px)').addEventListener('change', event => {
   if (event.matches) closeMenu();
 });
 const navigation = document.querySelectorAll('.nav-link');
